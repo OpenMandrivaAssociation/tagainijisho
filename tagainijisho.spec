@@ -1,16 +1,23 @@
-%define version 0.9.2
-%define release 1
-
 Summary:	A free Japanese dictionary and study assistant
 Name:		tagainijisho
-Version:	%{version}
-Release:	%{release}
-Source0:	https://github.com/downloads/Gnurou/tagainijisho/%{name}-%{version}.tar.gz
+Version:	1.2.1
+Release:	1
+Source0:	https://github.com/Gnurou/tagainijisho/archive/refs/tags/%{version}.tar.gz
+Source1:	http://ftp.edrdg.org/pub/Nihongo/JMdict.gz
+Source2:	https://www.edrdg.org/kanjidic/kanjidic2.xml.gz
+Source3:	https://github.com/KanjiVG/kanjivg/releases/download/r20220427/kanjivg-20220427.xml.gz
 License:	GPLv3+
-Group:	Education		
+Group:		Education		
 Url:		http://www.tagaini.net
 BuildRequires:	cmake
-BuildRequires:	qt4-devel
+BuildRequires:	ninja
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Widgets)
+BuildRequires:	cmake(Qt5LinguistTools)
+BuildRequires:	cmake(Qt5Network)
+BuildRequires:	cmake(Qt5PrintSupport)
+BuildRequires:	cmake(Qt5)
 
 %description
 Tagaini Jisho is a free, open-source Japanese dictionary and kanji lookup tool
@@ -20,18 +27,24 @@ It also let you train entries you are studying and follows your progression in r
 Finally, it makes it easy to review entries you did not remember by listing them on screen or printing them on a small bookle
 
 %prep
-%setup -q
+%autosetup -p1
+mkdir 3rdparty
+gzip -cd %{S:1} >3rdparty/JMdict
+gzip -cd %{S:2} >3rdparty/kanjidic2.xml
+gzip -cd %{S:3} >3rdparty/kanjivg.xml
+%cmake \
+	-DEMBED_SQLITE:BOOL=OFF \
+	-G Ninja
 
 %build
-%cmake
-%make
+%ninja_build -C build
 
 %install
-cd build/
-%makeinstall_std
+%ninja_install -C build
 
 %files
 %{_bindir}/%{name}
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_datadir}/%{name}/
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/tagainijisho.appdata.xml

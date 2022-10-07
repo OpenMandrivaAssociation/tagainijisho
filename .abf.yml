@@ -1,2 +1,5 @@
 sources:
-  "tagainijisho-0.9.2.tar.gz:"	91e3bc1c1aacc487a4832a799edf3a2bd7937c70
+  1.2.1.tar.gz: 9a1b20cbe8677c9851bf82c919936036364523f7
+  JMdict.gz: 734e7aaadfab5310039d8d6bcacdb49fb8873625
+  kanjidic2.xml.gz: 231ca4fb94405389d1180ac1ab6d2cae1043b649
+  kanjivg-20220427.xml.gz: b4873aa2c0a9d1612a330bcf19e15b3b8acb3ecb
