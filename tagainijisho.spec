@@ -1,6 +1,6 @@
 Summary:	A free Japanese dictionary and study assistant
 Name:		tagainijisho
-Version:	1.2.1
+Version:	1.2.2
 Release:	1
 Source0:	https://github.com/Gnurou/tagainijisho/archive/refs/tags/%{version}.tar.gz
 Source1:	http://ftp.edrdg.org/pub/Nihongo/JMdict.gz
