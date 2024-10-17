@@ -8,7 +8,7 @@ Source2:	https://www.edrdg.org/kanjidic/kanjidic2.xml.gz
 Source3:	https://github.com/KanjiVG/kanjivg/releases/download/r20220427/kanjivg-20220427.xml.gz
 License:	GPLv3+
 Group:		Education		
-Url:		http://www.tagaini.net
+Url:		https://www.tagaini.net
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	cmake(Qt5Core)
